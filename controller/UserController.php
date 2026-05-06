@@ -346,6 +346,10 @@ class UserController
     public function updatePassword(int $userId, string $currentPassword, string $newPassword)
 {
     // Insertar contraseña
+    if ($newPassword === '') {
+    return "La nueva contraseña no puede estar vacía.";
+}
+
     $stmt = $this->conn->prepare(
         "SELECT contrasena FROM usuarios WHERE id = :id"
     );
